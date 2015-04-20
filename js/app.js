@@ -1,4 +1,7 @@
 
+var guess;
+var actualNum;
+
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -12,10 +15,18 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
+  	$("nav > ul.clearfix").on('click' , 'a.new' , newGame);
   	newGame();
-  	$(document).on('click' , 'a.new' , newGame);
-  	
-});
+  	actualNum = pickRandomNumber();
+  	console.log(actualNum);
+  	$("#guessButton").click(function(){
+		guess = +$("#userGuess").val();
+		console.log(guess);
+	});
+	//first click prints to console the guess properly
+	//second click refreshes the page
+
+}); //end document ready
 
 function pickRandomNumber () {
 	return Math.floor((Math.random() * 100) + 1);
@@ -32,15 +43,11 @@ function newGame () {
 	$("#guessList").empty(); 
 	$("span#count").text(counter);
 
-	//choose a number
-	var actualNum = pickRandomNumber();
-	console.log(actualNum);
 
-	//user puts in something, assign to var
-	var guess;
-	$("guessButton").click(function(){
-		guess = +$("userGuess").val();
-	});
+
+	//sometimes this works, sometimes clicking guessbutton
+	//makes the page refresh. why?
+
 
 	//check to see how close, givefeedback
 	//repeat while guess is != number
