@@ -34,7 +34,7 @@ function newGame () {
 
 	//generate new number for game
 	actualNum = pickRandomNumber();
-  	console.log(actualNum);
+  	console.log("The mystery number is " + actualNum);
 
   	//every time guess button is clicked
   	$("#guessButton").click(function(event){
