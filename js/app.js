@@ -40,7 +40,7 @@ function newGame () {
   	$("#guessButton").click(function(event){
   		event.preventDefault();
 		guess = +$("#userGuess").val();
-		console.log(guess);
+		console.log("The guess number is " + guess);
 		giveFeedback();
 		updateGuesses();
 	});
@@ -58,72 +58,33 @@ function pickRandomNumber () {
 	return Math.floor((Math.random() * 100) + 1);
 };
 
-
-
-/* 
-
-Issues for giveFeedback:
--If within range for "ice cold," says ice cold [CORRECT]
--If within range for "cold," says cold [CORRECT]
--If it is a match, responds correctly as well. 
--HOWEVER, if within range for warm, hot, and very hot, also says "cold."
--How to fix?
-
-*/
-
 function giveFeedback () {
 	var difference = Math.abs(guess - actualNum);
-	console.log(difference);
-	
-	if (difference != 0) {
-		if (difference >= 50) {
-			$("#feedback").text('Ice cold!'); //works
-		}
-		else if (30 <= difference < 50) {
-			$("#feedback").text('Cold!'); //not responding correctly; defaults to "Cold" for everything
-			console.log("Cold");
-		}
-		else if (20 <= difference < 30) {
-			$("#feedback").text('Warm!'); //not responding correctly; defaults to "Cold" for everything
-			console.log("warm");
-		}
-		else if (10 <= difference < 20) {
-			$("#feedback").text('Hot!'); //not responding correctly; defaults to "Cold" for everything
-			console.log("hot");
-		}
-		else if (1 <= difference < 10) {
-			$("#feedback").text('Very hot!');
-			console.log("very hot");
-		}
-	}
-	else {
+	console.log("The absolute difference is " + difference);
+
+	if (difference >= 50) {
+		$("#feedback").text('Ice cold!'); //works
+	};
+	if (30 <= difference && difference < 50) {
+		$("#feedback").text('Cold!'); //not responding correctly; defaults to "Cold" for everything
+		console.log("Cold");
+	};
+	if (20 <= difference && difference < 30) {
+		$("#feedback").text('Warm!'); //not responding correctly; defaults to "Cold" for everything
+		console.log("warm");
+	};
+	if (10 <= difference && difference < 20) {
+		$("#feedback").text('Hot!'); //not responding correctly; defaults to "Cold" for everything
+		console.log("hot");
+	};
+	if (1 <= difference && difference < 10) {
+		$("#feedback").text('Very hot!');
+		console.log("very hot");
+	};
+	if (difference == 0) {
 		$("#feedback").text('You got it! The number is ' + actualNum + '.'); //works
 	};
 
-	// if (guess != actualNum) {
-	// 	if (actualNum-50 >= guess || guess >= actualNum+50) {
-	// 		$("#feedback").text('Ice cold!'); //works
-	// 	}
-	// 	else if (actualNum-50 < guess <= actualNum-30 || actualNum+30 <= guess < actualNum+50) {
-	// 		$("#feedback").text('Cold!'); //not responding correctly; defaults to "Cold" for everything
-	// 		console.log("Cold");
-	// 	}
-	// 	else if (actualNum-30 < guess <= actualNum-20 || actualNum+20 <= guess < actualNum+30) {
-	// 		$("#feedback").text('Warm!'); //not responding correctly; defaults to "Cold" for everything
-	// 		console.log("warm");
-	// 	}
-	// 	else if (actualNum-20 < guess <= actualNum-10 || actualNum+10 <= guess < actualNum+20) {
-	// 		$("#feedback").text('Hot!'); //not responding correctly; defaults to "Cold" for everything
-	// 		console.log("hot");
-	// 	}
-	// 	else if (actualNum-10 < guess <= actualNum-1 || actualNum+1 <= guess < actualNum+10) {
-	// 		$("#feedback").text('Very hot!');
-	// 		console.log("very hot");
-	// 	}
-	// }
-	// else {
-	// 	$("#feedback").text('You got it! The number is ' + actualNum + '.'); //works
-	// };
 }; //end givefeedback
 
 
